@@ -1,0 +1,12 @@
+# MacOS
+.DS_Store
+
+# NodeJS
+node_modules
+dist
+build
+*.tgz
+coverage
+.nyc_output
+.turbo
+.chainfile
