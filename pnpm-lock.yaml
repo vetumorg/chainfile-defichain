@@ -60,8 +60,8 @@ importers:
   packages/chainfile-defichain:
     devDependencies:
       '@chainfile/testcontainers':
-        specifier: ^0.4.0
-        version: 0.4.0
+        specifier: ^0.5.0
+        version: 0.5.0
 
   workspace/eslint-config:
     dependencies:
@@ -451,24 +451,25 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@chainfile/docker@0.4.0:
-    resolution: {integrity: sha512-Vf1QgSSfwM9t+VR/6iZKGnE2ypf+tp3VyKDMfpY+PxFGfCxn6L+j0eJ1H2aOG2DnahAUYNlXlz3/f19NQe+a1g==}
+  /@chainfile/docker@0.5.0:
+    resolution: {integrity: sha512-GYlaUDUlQpvXzVNJrqZv37Veyw/KFuP6vZJo2uBQ8cPp9FnSlyD3auGaSJPNoDwL7YGtZ1spKe8jFUKRQJYAfQ==}
     dependencies:
-      '@chainfile/schema': 0.4.0
+      '@chainfile/schema': 0.5.0
       ajv: 8.16.0
       ajv-formats: 3.0.1(ajv@8.16.0)
       js-yaml: 4.1.0
+      lodash: 4.17.21
     dev: true
 
-  /@chainfile/schema@0.4.0:
-    resolution: {integrity: sha512-yien3pgg9NAwSe76qRBdpDNE0+iUzIzqpD+LJn5L49wzyFZEjvEKzJ5XYsa5VWAAogr7dmwatPPhw/lnKphayw==}
+  /@chainfile/schema@0.5.0:
+    resolution: {integrity: sha512-1E+NSoGijFTlWWaXGWwdrgm+TAh3mZcLVjnprVcaNqfJHd830qsui3yfkGAugs8iiHFk6epiovzKGnkUUA09Mw==}
     dev: true
 
-  /@chainfile/testcontainers@0.4.0:
-    resolution: {integrity: sha512-7BpGMYqsaNREKIKug7STPFpVVtSYrUHnSMMfw3v0kqmCg6RusmDnuemxeHY0PTRXqHqNHY/RQcfuODdxUHYSJQ==}
+  /@chainfile/testcontainers@0.5.0:
+    resolution: {integrity: sha512-rmp02ct7HYfV8KPVCegNXq9X9x4wh9en8bmyMqCZ9AQkiUTc84FBoJMSjtFlRTmojb9EPolaH8AMgYKDbb5QLw==}
     dependencies:
-      '@chainfile/docker': 0.4.0
-      '@chainfile/schema': 0.4.0
+      '@chainfile/docker': 0.5.0
+      '@chainfile/schema': 0.5.0
       testcontainers: 10.9.0
     transitivePeerDependencies:
       - encoding
@@ -3569,6 +3570,10 @@ packages:
 
   /lodash.union@4.6.0:
     resolution: {integrity: sha512-c4pB2CdGrGdjMKYLA+XiRDO7Y0PRQbm/Gzg8qMj+QH+pFVAoTp5sBpO0odL3FjoPCGjK96p6qsP+yQoiLoOBcw==}
+    dev: true
+
+  /lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
     dev: true
 
   /log-update@6.0.0:

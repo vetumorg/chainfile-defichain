@@ -1,12 +1,12 @@
-import { ChainfileContainer,ChainfileTestcontainers } from '@chainfile/testcontainers';
+import { ChainfileContainer, ChainfileTestcontainers } from '@chainfile/testcontainers';
 import { afterAll, beforeAll, describe, expect, it } from '@jest/globals';
 
-import definition from './jellyfish-mainnet.json';
+import mainnet from './jellyfish-mainnet.json';
 
-let testcontainers: ChainfileTestcontainers;
+const testcontainers = new ChainfileTestcontainers(mainnet);
 
 beforeAll(async () => {
-  testcontainers = await ChainfileTestcontainers.start(definition);
+  await testcontainers.start();
 });
 
 afterAll(async () => {

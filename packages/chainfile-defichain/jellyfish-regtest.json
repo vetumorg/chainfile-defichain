@@ -2,9 +2,16 @@
   "$schema": "https://chainfile.org/schema.json",
   "caip2": "bip122:d744db74fb70ed42767ae028a129365f",
   "name": "DeFiChain Regtest (defid and whale)",
+  "values": {
+    "defid_version": "4.1.0",
+    "jellyfish_version": "4.0.7"
+  },
   "containers": {
     "defid": {
-      "image": "docker.io/defi/defichain@sha256:ddb70eabe4d7337f570e779378e7c453c5ec2a3ee7c3c050f285edf24789eb5a",
+      "image": "docker.io/defi/defichain",
+      "tag": {
+        "$value": "defid_version"
+      },
       "source": "https://github.com/DeFiCh/ain",
       "endpoints": {
         "p2p": {
@@ -15,8 +22,8 @@
           "protocol": "HTTP JSON-RPC 2.0",
           "authorization": {
             "type": "HttpBasic",
-            "username": "RPCUSER",
-            "password": "RPCPASSWORD"
+            "username": "user",
+            "password": "pass"
           },
           "probes": {
             "readiness": {
@@ -47,8 +54,8 @@
         "-printtoconsole",
         "-rpcallowip=0.0.0.0/0",
         "-rpcbind=0.0.0.0",
-        "-rpcuser=RPCUSER",
-        "-rpcpassword=RPCPASSWORD",
+        "-rpcuser=user",
+        "-rpcpassword=pass",
         "-txindex=1",
         "-acindex=1",
         "-regtest=1",
@@ -72,7 +79,10 @@
       }
     },
     "whale": {
-      "image": "ghcr.io/birthdayresearch/whale-api:4.0.5@sha256:1afc855ab5790572096de198473bd372d91fc7ba3caf65f618cc3076c6a86649",
+      "image": "ghcr.io/birthdayresearch/whale-api",
+      "tag": {
+        "$value": "jellyfish_version"
+      },
       "source": "https://github.com/BirthdayResearch/jellyfishsdk",
       "endpoints": {
         "api": {
@@ -90,7 +100,7 @@
         }
       },
       "environment": {
-        "WHALE_DEFID_URL": "http://RPCUSER:RPCPASSWORD@defid:19554",
+        "WHALE_DEFID_URL": "http://user:pass@defid:19554",
         "WHALE_NETWORK": "regtest",
         "WHALE_VERSION": "v0"
       },

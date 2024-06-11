@@ -2,21 +2,29 @@
   "$schema": "https://chainfile.org/schema.json",
   "caip2": "bip122:279b1a87aedc7b9471d4ad4e5f12967a",
   "name": "DeFiChain Mainnet",
-  "env": {
-    "RPC_USER": {
-      "type": "RandomBytes",
-      "length": 16,
-      "encoding": "hex"
+  "values": {
+    "version": "4.1.0",
+    "rpc_user": {
+      "random": {
+        "type": "bytes",
+        "length": 16,
+        "encoding": "hex"
+      }
     },
-    "RPC_PASSWORD": {
-      "type": "RandomBytes",
-      "length": 16,
-      "encoding": "hex"
+    "rpc_password": {
+      "random": {
+        "type": "bytes",
+        "length": 16,
+        "encoding": "hex"
+      }
     }
   },
   "containers": {
     "defid": {
-      "image": "docker.io/defi/defichain@sha256:ddb70eabe4d7337f570e779378e7c453c5ec2a3ee7c3c050f285edf24789eb5a",
+      "image": "docker.io/defi/defichain",
+      "tag": {
+        "$value": "version"
+      },
       "source": "https://github.com/DeFiCh/ain",
       "endpoints": {
         "p2p": {
@@ -28,10 +36,10 @@
           "authorization": {
             "type": "HttpBasic",
             "username": {
-              "key": "RPC_USER"
+              "$value": "rpc_user"
             },
             "password": {
-              "key": "RPC_PASSWORD"
+              "$value": "rpc_password"
             }
           },
           "probes": {
@@ -64,10 +72,10 @@
       ],
       "environment": {
         "RPC_USER": {
-          "key": "RPC_USER"
+          "$value": "rpc_user"
         },
         "RPC_PASSWORD": {
-          "key": "RPC_PASSWORD"
+          "$value": "rpc_password"
         }
       },
       "volumes": {

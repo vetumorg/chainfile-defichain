@@ -2,25 +2,31 @@
   "$schema": "https://chainfile.org/schema.json",
   "caip2": "bip122:279b1a87aedc7b9471d4ad4e5f12967a",
   "name": "DeFiChain Mainnet (defid and whale)",
-  "env": {
-    "RPC_USER": {
-      "type": "RandomBytes",
-      "length": 16,
-      "encoding": "hex"
+  "values": {
+    "rpc_user": {
+      "random": {
+        "type": "bytes",
+        "length": 16,
+        "encoding": "hex"
+      }
     },
-    "RPC_PASSWORD": {
-      "type": "RandomBytes",
-      "length": 16,
-      "encoding": "hex"
+    "rpc_password": {
+      "random": {
+        "type": "bytes",
+        "length": 16,
+        "encoding": "hex"
+      }
     },
-    "DEFID_URL": {
-      "type": "Value",
-      "value": "http://${RPC_USER}:${RPC_PASSWORD}@defid:8554"
-    }
+    "defid_url": "http://${rpc_user}:${rpc_password}@defid:8554",
+    "defid_version": "4.1.0",
+    "jellyfish_version": "4.0.7"
   },
   "containers": {
     "defid": {
-      "image": "docker.io/defi/defichain@sha256:ddb70eabe4d7337f570e779378e7c453c5ec2a3ee7c3c050f285edf24789eb5a",
+      "image": "docker.io/defi/defichain",
+      "tag": {
+        "$value": "defid_version"
+      },
       "source": "https://github.com/DeFiCh/ain",
       "endpoints": {
         "p2p": {
@@ -32,10 +38,10 @@
           "authorization": {
             "type": "HttpBasic",
             "username": {
-              "key": "RPC_USER"
+              "$value": "rpc_user"
             },
             "password": {
-              "key": "RPC_PASSWORD"
+              "$value": "rpc_password"
             }
           },
           "probes": {
@@ -68,10 +74,10 @@
       ],
       "environment": {
         "RPC_USER": {
-          "key": "RPC_USER"
+          "$value": "rpc_user"
         },
         "RPC_PASSWORD": {
-          "key": "RPC_PASSWORD"
+          "$value": "rpc_password"
         }
       },
       "volumes": {
@@ -82,7 +88,10 @@
       }
     },
     "whale": {
-      "image": "ghcr.io/birthdayresearch/whale-api:4.0.5@sha256:1afc855ab5790572096de198473bd372d91fc7ba3caf65f618cc3076c6a86649",
+      "image": "ghcr.io/birthdayresearch/whale-api",
+      "tag": {
+        "$value": "jellyfish_version"
+      },
       "source": "https://github.com/BirthdayResearch/jellyfishsdk",
       "endpoints": {
         "api": {
@@ -101,7 +110,7 @@
       },
       "environment": {
         "WHALE_DEFID_URL": {
-          "key": "DEFID_URL"
+          "$value": "defid_url"
         },
         "WHALE_NETWORK": "mainnet",
         "WHALE_VERSION": "v0"
