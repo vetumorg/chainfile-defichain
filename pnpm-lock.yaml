@@ -60,8 +60,8 @@ importers:
   packages/chainfile-defichain:
     devDependencies:
       '@chainfile/testcontainers':
-        specifier: ^0.5.1
-        version: 0.5.1
+        specifier: ^0.5.2
+        version: 0.5.2
 
   workspace/eslint-config:
     dependencies:
@@ -451,25 +451,25 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@chainfile/docker@0.5.1:
-    resolution: {integrity: sha512-T+2xuyJC1pAg84RXLfcOzb/V4uHDWeQDl9gbsV/2PrIjFdaXIA79DsQhPV6T7FWNI0oVAPEr/Y7Wu0+BNL2W/w==}
+  /@chainfile/docker@0.5.2:
+    resolution: {integrity: sha512-qX7p7jORcn7wD117EMyKq77BVN4SiO0ePXyZL0FMwaPv2HYEgSeZ5LXG63lJbe5nxJD6lYcqkZ9AxKx/CdZz/w==}
     dependencies:
-      '@chainfile/schema': 0.5.1
+      '@chainfile/schema': 0.5.2
       ajv: 8.16.0
       ajv-formats: 3.0.1(ajv@8.16.0)
       js-yaml: 4.1.0
       lodash: 4.17.21
     dev: true
 
-  /@chainfile/schema@0.5.1:
-    resolution: {integrity: sha512-p4LHKLvROLPPvqAJzcc6s+3/QFmhH382gQ1EcTvYXRhS/6Lzhs5ob5Hk+C5KLnkFpZLZUrGuTUSKjcnBHUmc0A==}
+  /@chainfile/schema@0.5.2:
+    resolution: {integrity: sha512-z3bltytJZIWG0F2apF4jsJs6AzM++rL7v2PzuxR//R4XyS+6Vf778o+LK1JpJ1Rmv0gbUKHrkBCOvSejNhJP7Q==}
     dev: true
 
-  /@chainfile/testcontainers@0.5.1:
-    resolution: {integrity: sha512-/f+ZX1Yu3MbBiXtiTAFqAugOi43HTv1LEwjvF7nK4+37+9mP4nI1c2w8E0OwWwfGWxdShT1q5CGo900/AEIjkw==}
+  /@chainfile/testcontainers@0.5.2:
+    resolution: {integrity: sha512-Kf9I46+KG1m6QfeebCXBgClft3esJS75yFxVo7PwLwnBHL4/qVW1fPI94TaUS3flSCPNgOoGSz8z4y6YC3bocA==}
     dependencies:
-      '@chainfile/docker': 0.5.1
-      '@chainfile/schema': 0.5.1
+      '@chainfile/docker': 0.5.2
+      '@chainfile/schema': 0.5.2
       testcontainers: 10.9.0
     transitivePeerDependencies:
       - encoding
