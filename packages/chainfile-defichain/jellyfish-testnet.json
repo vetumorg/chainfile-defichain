@@ -7,22 +7,27 @@
     "jellyfish_version": "4.0.7",
     "rpc_user": {
       "description": "Username for defid RPC using Basic HTTP authentication scheme defined in RFC 7617. You may set this value to a custom value or blank it empty to generate a random value.",
-      "random": {
-        "type": "bytes",
-        "length": 16,
-        "encoding": "hex"
+      "secret": true,
+      "default": {
+        "random": {
+          "bytes": 16,
+          "encoding": "hex"
+        }
       }
     },
     "rpc_password": {
       "description": "Password for defid RPC using Basic HTTP authentication scheme defined in RFC 7617. You may set this value to a custom value or leave it empty to generate a random value.",
-      "random": {
-        "type": "bytes",
-        "length": 16,
-        "encoding": "hex"
+      "secret": true,
+      "default": {
+        "random": {
+          "bytes": 16,
+          "encoding": "hex"
+        }
       }
     },
     "defid_url": {
       "description": "Endpoint to the defid node RPC endpoint, used by whale-api to connect to defid.",
+      "secret": true,
       "default": "http://${rpc_user}:${rpc_password}@defid:18554"
     }
   },

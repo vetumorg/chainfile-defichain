@@ -5,26 +5,37 @@
   "values": {
     "rpc_user": {
       "description": "Username for defid node RPC using Basic HTTP authentication scheme defined in RFC 7617, used by whale-api to connect to defid. You may set this value to a custom value or blank it empty to generate a random value.",
-      "random": {
-        "type": "bytes",
-        "length": 16,
-        "encoding": "hex"
+      "secret": true,
+      "default": {
+        "random": {
+          "bytes": 16,
+          "encoding": "hex"
+        }
       }
     },
     "rpc_password": {
       "description": "Password for defid node RPC using Basic HTTP authentication scheme defined in RFC 7617, used by whale-api to connect to defid. You may set this value to a custom value or leave it empty to generate a random value.",
-      "random": {
-        "type": "bytes",
-        "length": 16,
-        "encoding": "hex"
+      "secret": true,
+      "default": {
+        "random": {
+          "bytes": 16,
+          "encoding": "hex"
+        }
       }
     },
     "defid_url": {
+      "secret": true,
       "description": "Endpoint to the defid node RPC endpoint, used by whale-api to connect to defid.",
       "default": "http://${rpc_user}:${rpc_password}@defid:8554"
     },
-    "defid_version": "4.1.0",
-    "jellyfish_version": "4.0.7"
+    "defid_version": {
+      "description": "Version of docker.io/defi/defichain to run",
+      "default": "4.1.0"
+    },
+    "jellyfish_version": {
+      "description": "Version of ghcr.io/birthdayresearch/whale-api to run",
+      "default": "4.0.7"
+    }
   },
   "containers": {
     "defid": {
