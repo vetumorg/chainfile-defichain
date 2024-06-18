@@ -13,13 +13,14 @@
   "lint-staged": {
     "*": "prettier --write --ignore-unknown"
   },
+  "prettier": "@workspace/prettier-config",
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@swc/core": "^1.5.29",
     "@swc/jest": "0.2.36",
     "@types/node": "^20.14.1",
     "@workspace/eslint-config": "workspace:*",
-    "@workspace/jest-preset": "workspace:*",
+    "@workspace/jest": "workspace:*",
     "@workspace/prettier-config": "workspace:*",
     "@workspace/tsconfig": "workspace:*",
     "eslint": "^8.57.0",
