@@ -13,10 +13,19 @@
     "lint": "eslint .",
     "test": "jest"
   },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
   "jest": {
-    "preset": "@workspace/jest-preset"
+    "preset": "@workspace/jest"
   },
   "devDependencies": {
-    "@chainfile/testcontainers": "^0.6.0"
+    "@chainfile/testcontainers": "^0.7.1"
   }
 }
