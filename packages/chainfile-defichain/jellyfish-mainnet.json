@@ -2,7 +2,7 @@
   "$schema": "https://chainfile.org/schema.json",
   "caip2": "bip122:279b1a87aedc7b9471d4ad4e5f12967a",
   "name": "DeFiChain Mainnet (defid and whale)",
-  "values": {
+  "params": {
     "rpc_user": {
       "description": "Username for defid node RPC using Basic HTTP authentication scheme defined in RFC 7617, used by whale-api to connect to defid. You may set this value to a custom value or blank it empty to generate a random value.",
       "secret": true,
@@ -37,11 +37,17 @@
       "default": "4.0.7"
     }
   },
+  "volumes": {
+    "data": {
+      "type": "persistent",
+      "size": "100Gi"
+    }
+  },
   "containers": {
     "defid": {
       "image": "docker.io/defi/defichain",
       "tag": {
-        "$value": "defid_version"
+        "$param": "defid_version"
       },
       "source": "https://github.com/DeFiCh/ain",
       "endpoints": {
@@ -54,10 +60,10 @@
           "authorization": {
             "type": "HttpBasic",
             "username": {
-              "$value": "rpc_user"
+              "$param": "rpc_user"
             },
             "password": {
-              "$value": "rpc_password"
+              "$param": "rpc_password"
             }
           },
           "probes": {
@@ -90,23 +96,23 @@
       ],
       "environment": {
         "RPC_USER": {
-          "$value": "rpc_user"
+          "$param": "rpc_user"
         },
         "RPC_PASSWORD": {
-          "$value": "rpc_password"
+          "$param": "rpc_password"
         }
       },
-      "volumes": {
-        "persistent": {
-          "paths": ["/data"],
-          "size": "100G"
+      "mounts": [
+        {
+          "volume": "data",
+          "mountPath": "/data"
         }
-      }
+      ]
     },
     "whale": {
       "image": "ghcr.io/birthdayresearch/whale-api",
       "tag": {
-        "$value": "jellyfish_version"
+        "$param": "jellyfish_version"
       },
       "source": "https://github.com/BirthdayResearch/jellyfishsdk",
       "endpoints": {
@@ -126,7 +132,7 @@
       },
       "environment": {
         "WHALE_DEFID_URL": {
-          "$value": "defid_url"
+          "$param": "defid_url"
         },
         "WHALE_NETWORK": "mainnet",
         "WHALE_VERSION": "v0"

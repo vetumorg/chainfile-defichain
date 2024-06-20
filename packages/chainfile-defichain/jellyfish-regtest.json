@@ -2,15 +2,21 @@
   "$schema": "https://chainfile.org/schema.json",
   "caip2": "bip122:d744db74fb70ed42767ae028a129365f",
   "name": "DeFiChain Regtest (defid and whale)",
-  "values": {
+  "params": {
     "defid_version": "4.1.0",
     "jellyfish_version": "4.0.7"
+  },
+  "volumes": {
+    "data": {
+      "type": "persistent",
+      "size": "1Gi"
+    }
   },
   "containers": {
     "defid": {
       "image": "docker.io/defi/defichain",
       "tag": {
-        "$value": "defid_version"
+        "$param": "defid_version"
       },
       "source": "https://github.com/DeFiCh/ain",
       "endpoints": {
@@ -71,17 +77,17 @@
         "-eunospayaheight=7",
         "-fortcanningheight=8"
       ],
-      "volumes": {
-        "persistent": {
-          "paths": ["/data"],
-          "size": "1G"
+      "mounts": [
+        {
+          "volume": "data",
+          "mountPath": "/data"
         }
-      }
+      ]
     },
     "whale": {
       "image": "ghcr.io/birthdayresearch/whale-api",
       "tag": {
-        "$value": "jellyfish_version"
+        "$param": "jellyfish_version"
       },
       "source": "https://github.com/BirthdayResearch/jellyfishsdk",
       "endpoints": {

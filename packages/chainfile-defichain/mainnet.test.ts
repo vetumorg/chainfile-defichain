@@ -1,9 +1,9 @@
-import { ChainfileContainer, ChainfileTestcontainers } from '@chainfile/testcontainers';
-import { afterAll, beforeAll, describe, expect, it } from '@jest/globals';
+import { CFContainer, CFTestcontainers } from '@chainfile/testcontainers';
+import { afterAll, beforeAll, describe, expect, it } from '@workspace/jest/globals';
 
 import mainnet from './mainnet.json';
 
-const testcontainers = new ChainfileTestcontainers(mainnet);
+const testcontainers = new CFTestcontainers(mainnet);
 
 beforeAll(async () => {
   await testcontainers.start();
@@ -14,7 +14,7 @@ afterAll(async () => {
 });
 
 describe('defid', () => {
-  let defid: ChainfileContainer;
+  let defid: CFContainer;
 
   beforeAll(() => {
     defid = testcontainers.get('defid');

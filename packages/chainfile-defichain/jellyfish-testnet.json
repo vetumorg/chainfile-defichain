@@ -2,7 +2,7 @@
   "$schema": "https://chainfile.org/schema.json",
   "caip2": "bip122:d744db74fb70ed42767ae028a129365f",
   "name": "DeFiChain Testnet (defid and whale)",
-  "values": {
+  "params": {
     "defid_version": "4.1.0",
     "jellyfish_version": "4.0.7",
     "rpc_user": {
@@ -31,11 +31,17 @@
       "default": "http://${rpc_user}:${rpc_password}@defid:18554"
     }
   },
+  "volumes": {
+    "data": {
+      "type": "persistent",
+      "size": "50Gi"
+    }
+  },
   "containers": {
     "defid": {
       "image": "docker.io/defi/defichain",
       "tag": {
-        "$value": "defid_version"
+        "$param": "defid_version"
       },
       "source": "https://github.com/DeFiCh/ain",
       "endpoints": {
@@ -48,10 +54,10 @@
           "authorization": {
             "type": "HttpBasic",
             "username": {
-              "$value": "rpc_user"
+              "$param": "rpc_user"
             },
             "password": {
-              "$value": "rpc_password"
+              "$param": "rpc_password"
             }
           },
           "probes": {
@@ -84,23 +90,23 @@
       ],
       "environment": {
         "RPC_USER": {
-          "$value": "rpc_user"
+          "$param": "rpc_user"
         },
         "RPC_PASSWORD": {
-          "$value": "rpc_password"
+          "$param": "rpc_password"
         }
       },
-      "volumes": {
-        "persistent": {
-          "paths": ["/data"],
-          "size": "50G"
+      "mounts": [
+        {
+          "volume": "data",
+          "mountPath": "/data"
         }
-      }
+      ]
     },
     "whale": {
       "image": "ghcr.io/birthdayresearch/whale-api",
       "tag": {
-        "$value": "jellyfish_version"
+        "$param": "jellyfish_version"
       },
       "source": "https://github.com/BirthdayResearch/jellyfishsdk",
       "endpoints": {
@@ -120,7 +126,7 @@
       },
       "environment": {
         "WHALE_DEFID_URL": {
-          "$value": "defid_url"
+          "$param": "defid_url"
         },
         "WHALE_NETWORK": "testnet",
         "WHALE_VERSION": "v0"

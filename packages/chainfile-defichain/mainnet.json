@@ -2,7 +2,7 @@
   "$schema": "https://chainfile.org/schema.json",
   "caip2": "bip122:279b1a87aedc7b9471d4ad4e5f12967a",
   "name": "DeFiChain Mainnet",
-  "values": {
+  "params": {
     "version": {
       "description": "The version of defid to run, refer to https://hub.docker.com/r/defi/defichain/tags for available versions/tag.",
       "default": "4.1.0"
@@ -28,11 +28,17 @@
       }
     }
   },
+  "volumes": {
+    "data": {
+      "type": "persistent",
+      "size": "100Gi"
+    }
+  },
   "containers": {
     "defid": {
       "image": "docker.io/defi/defichain",
       "tag": {
-        "$value": "version"
+        "$param": "version"
       },
       "source": "https://github.com/DeFiCh/ain",
       "endpoints": {
@@ -45,10 +51,10 @@
           "authorization": {
             "type": "HttpBasic",
             "username": {
-              "$value": "rpc_user"
+              "$param": "rpc_user"
             },
             "password": {
-              "$value": "rpc_password"
+              "$param": "rpc_password"
             }
           },
           "probes": {
@@ -81,18 +87,18 @@
       ],
       "environment": {
         "RPC_USER": {
-          "$value": "rpc_user"
+          "$param": "rpc_user"
         },
         "RPC_PASSWORD": {
-          "$value": "rpc_password"
+          "$param": "rpc_password"
         }
       },
-      "volumes": {
-        "persistent": {
-          "paths": ["/data"],
-          "size": "100G"
+      "mounts": [
+        {
+          "volume": "data",
+          "mountPath": "/data"
         }
-      }
+      ]
     }
   }
 }
