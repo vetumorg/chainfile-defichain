@@ -1,9 +1,9 @@
-import { ChainfileContainer, ChainfileTestcontainers } from '@chainfile/testcontainers';
-import { afterAll, beforeAll, describe, expect, it } from '@jest/globals';
+import { CFContainer, CFTestcontainers } from '@chainfile/testcontainers';
+import { afterAll, beforeAll, describe, expect, it } from '@workspace/jest/globals';
 
 import regtest from './jellyfish-regtest.json';
 
-const testcontainers = new ChainfileTestcontainers(regtest);
+const testcontainers = new CFTestcontainers(regtest);
 
 beforeAll(async () => {
   await testcontainers.start();
@@ -14,8 +14,8 @@ afterAll(async () => {
 });
 
 describe('defid + whale', () => {
-  let defid: ChainfileContainer;
-  let whale: ChainfileContainer;
+  let defid: CFContainer;
+  let whale: CFContainer;
 
   beforeAll(() => {
     defid = testcontainers.get('defid');
