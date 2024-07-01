@@ -68,6 +68,21 @@
                 "result": {
                   "type": "object",
                   "properties": {
+                    "initialBlockDownload": {
+                      "const": false
+                    }
+                  },
+                  "required": ["initialBlockDownload"]
+                }
+              }
+            },
+            "liveness": {
+              "method": "getblockchaininfo",
+              "params": [],
+              "match": {
+                "result": {
+                  "type": "object",
+                  "properties": {
                     "blocks": {
                       "type": "number"
                     }
@@ -114,9 +129,16 @@
           "port": 3000,
           "protocol": "HTTP REST",
           "probes": {
-            "readiness": {
+            "liveness": {
               "method": "GET",
               "path": "/_actuator/probes/liveness",
+              "match": {
+                "status": 200
+              }
+            },
+            "readiness": {
+              "method": "GET",
+              "path": "/_actuator/probes/readiness",
               "match": {
                 "status": 200
               }
