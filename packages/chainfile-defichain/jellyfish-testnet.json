@@ -34,7 +34,7 @@
   "volumes": {
     "data": {
       "type": "persistent",
-      "size": "50Gi"
+      "size": "100Gi"
     }
   },
   "containers": {
@@ -81,7 +81,7 @@
       },
       "resources": {
         "cpu": 1,
-        "memory": 4096
+        "memory": 2048
       },
       "command": [
         "sh",
@@ -129,12 +129,20 @@
           "$param": "defid_url"
         },
         "WHALE_NETWORK": "testnet",
-        "WHALE_VERSION": "v0"
+        "WHALE_VERSION": "v0",
+        "WHALE_DATABASE_LEVEL_LOCATION": "/data"
       },
       "resources": {
         "cpu": 1,
-        "memory": 4096
-      }
+        "memory": 2048
+      },
+      "mounts": [
+        {
+          "volume": "data",
+          "mountPath": "/data",
+          "subPath": "whale"
+        }
+      ]
     }
   }
 }

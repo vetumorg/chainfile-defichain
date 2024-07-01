@@ -40,7 +40,7 @@
   "volumes": {
     "data": {
       "type": "persistent",
-      "size": "100Gi"
+      "size": "200Gi"
     }
   },
   "containers": {
@@ -105,7 +105,8 @@
       "mounts": [
         {
           "volume": "data",
-          "mountPath": "/data"
+          "mountPath": "/data",
+          "subPath": "defid"
         }
       ]
     },
@@ -135,12 +136,20 @@
           "$param": "defid_url"
         },
         "WHALE_NETWORK": "mainnet",
-        "WHALE_VERSION": "v0"
+        "WHALE_VERSION": "v0",
+        "WHALE_DATABASE_LEVEL_LOCATION": "/data"
       },
       "resources": {
         "cpu": 1,
-        "memory": 1024
-      }
+        "memory": 2048
+      },
+      "mounts": [
+        {
+          "volume": "data",
+          "mountPath": "/data",
+          "subPath": "whale"
+        }
+      ]
     }
   }
 }
